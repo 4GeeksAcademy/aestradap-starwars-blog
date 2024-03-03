@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			rootResources:[],
+			reNames : ["Films", "People", "Planets", "Species", "Starships", "Vehicles"],
 			demo: [
 				{
 					title: "FIRST",
@@ -28,6 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const filmsResponse = await fetch(root.result.films);
 					const films = await filmsResponse.json();
 					rootResources.push(films);
+				
 
 					const peopleResponse = await fetch(root.result.people)
 					const peoples = await peopleResponse.json();
@@ -48,8 +50,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const vehiclesResponse = await fetch(root.result.vehicles)
 					const vehicles = await vehiclesResponse.json();
 					rootResources.push(vehicles);
-					console.log(rootResources);
-					setStore({rootResources: rootResources, });
+					// console.log(rootResources);
+					setStore({rootResources: rootResources});
 				}			  
 			},
 			

@@ -3,7 +3,6 @@ import React, { Component } from "react";
 export const Footer = () => (
 
 	<div className="footer 
-		fixed-bottom mt-auto
 		py-3 text-center 
 		text-body-secondary text-light">
 
