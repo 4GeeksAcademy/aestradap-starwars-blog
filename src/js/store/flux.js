@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: [],
 			rootResources:[],
 			reNames : ["Films", "People", "Planets", "Species", "Starships", "Vehicles"],
+			favorites : [],
 			demo: [
 				{
 					title: "FIRST",
@@ -59,6 +60,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await fetch(BASE_URL + "resource_name/");
 				const films = response.json();
 				console.log(films);
+			},
+
+			addFavorite: (name) => {
+				const myFavorites = getStore().favorites;
+				myFavorites.push(name);
+				setStore({favorites: myFavorites});
+			},
+
+			removeFavorite: (name) => {
+				const myFavorites = getStore().favorites.filter(item => item != name);
+				setStore({favorites: myFavorites});
 			},
 
 			getPeople: async () => {
