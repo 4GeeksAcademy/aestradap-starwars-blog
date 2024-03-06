@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			rootResources:[],
 			reNames : ["Films", "People", "Planets", "Species", "Starships", "Vehicles"],
 			favorites : [],
+			detail:{},
 			demo: [
 				{
 					title: "FIRST",
@@ -71,6 +72,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			removeFavorite: (name) => {
 				const myFavorites = getStore().favorites.filter(item => item != name);
 				setStore({favorites: myFavorites});
+			},
+
+			saveDetail: async (data) => {
+				const film = data._id ? true : false;
+				if( film ) {
+					setStore({detail: data});
+				}else{
+					const response = await fetch(data.url);
+					const mydetail = await response.json();
+					setStore({detail: mydetail.result})
+				}
+				
 			},
 
 			getPeople: async () => {

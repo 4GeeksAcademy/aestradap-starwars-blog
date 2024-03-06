@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const InfoCard = ({ item, film }) => {
 	const { store, actions } = useContext(Context);
@@ -15,7 +16,12 @@ export const InfoCard = ({ item, film }) => {
 				<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 			</div>
 			<div className="d-flex justify-content-between m-2">
-				<a href="#" className="btn btn-primary">Learn More!</a>
+				<Link to={`resource/${item.uid}`} className="btn btn-primary">
+					<button className="btn btn-primary"
+						onClick={ () => { actions.saveDetail(item) }}
+					>Learn More!
+					</button>
+				</Link>
 				<button type="button" 
 					className={`btn btn-outline-warning ${favorite && "active"}`}
 					data-bs-toggle="button"
